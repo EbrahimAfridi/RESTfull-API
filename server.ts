@@ -1,10 +1,14 @@
 import {config} from './src/config/config';   
 import app from "./src/app";
+import connectDB from "./src/config/db";
 
 const startServer = () => {
-    const port = config.port || 3000;
+    // connect to the database
 
-    app.listen(port, () => {
+    const port = 3000;
+
+    app.listen(port, async () => {
+        await connectDB();
         console.log(`listening on port: ${port}`);
     });
 }
